@@ -47,4 +47,5 @@ class slist:
 sample=slist()
 sample.insert_front('apple')
 sample.insert_front('orange')
+sample.insert_front('pear')
 sample.print_list()
