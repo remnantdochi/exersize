@@ -18,14 +18,72 @@ class dlist:
             self.tail=self.head
         else:
             self.head=self.Node(None,item,self.head)
+            self.head.next.prev=self.head
         self.size+=1
 
+    def insert_before(self,target,item):
+        newnode=self.Node(target.prev,item,target)
+        if target==self.head: self.head=newnode
+        else: target.prev.next = newnode
+        target.prev=newnode
+        self.size+=1
+        #그러고보니 target이 slist안에 없을경우는?
+
+    def insert_after(self,target,item):
+        newnode=self.Node(target,item,target.next)
+        if target.next != None : target.next.prev=newnode
+        else : self.tail=newnode
+        target.next=newnode
+        self.size+=1
+
+    def delete(self,target):
+        self.size-=1
+        if target==self.head:
+            self.head=self.head.next
+            self.head.prev=None
+        elif target==self.tail:
+            self.tail=self.tail.prev
+            #print('test3',self.tail.item)
+            self.tail.next=None
+        else:
+            target.next.prev=target.prev
+            target.prev.next=target.next
+
     def print_list(self):
+        print('printing...')
+        print('head',self.head.item)
+        print('tail',self.tail.item)
         p=self.head
         while p:
-            print(p.item,end=" ")
+            print(p.item,end=" -> ")
             p=p.next
-#sample=dlist()
-#sample.insert_front('apple')
-#sample.insert_front('orange')
-#sample.print_list()
+        print('#######################')
+        p=self.tail
+        while p:
+            print(p.item,end=" <- ")
+            p=p.prev
+        print()
+'''
+sample=dlist()
+sample.insert_front('apple')
+sample.insert_front('orange')
+sample.insert_after(sample.tail,'bear')
+sample.print_list()
+sample.insert_before(sample.tail,'hedgehog')
+sample.print_list()
+sample.insert_before(sample.head,'fox')
+sample.print_list()
+sample.insert_after(sample.head,'cute')
+sample.print_list()
+sample.delete(sample.head)
+print('delete1')
+sample.print_list()
+sample.delete(sample.tail)
+print('delete2')
+sample.print_list()
+sample.delete(sample.head.next)
+print('delete3')
+sample.print_list()
+sample.delete(sample.tail.prev)
+print('delete4')
+sample.print_list()'''
