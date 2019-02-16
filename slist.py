@@ -40,12 +40,21 @@ class slist:
         p=self.head
         while p:
             if p.next != None:
-                print(p.item, end= " ")
+                print(p.item,'->', end= " ")
             else:
                 print(p.item)
             p=p.next
-sample=slist()
-sample.insert_front('apple')
-sample.insert_front('orange')
-sample.insert_front('pear')
-sample.print_list()
+
+    def search(self,target):
+        p=self.head
+        while p:
+            for i in range(self.size):
+                if target==p.item: return p
+                p=p.next
+        return None
+
+#sample=slist()
+#sample.insert_front('apple')
+#sample.insert_front('orange')
+#sample.insert_front('pear')
+#sample.print_list()
