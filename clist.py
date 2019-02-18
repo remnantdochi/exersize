@@ -17,11 +17,21 @@ class clist:
             newnode.next=self.last.next
             self.last.next=newnode
         self.size+=1
+
+    def delete(self):
+        #if self.last.item==item:
+        if self.size == 1: self.last=None
+        else:
+            self.last.next=self.last.next.next
+        self.size-=1
+
+
     def print_list(self):
         temp=self.last
         for i in range(self.no_list()):
             print(temp.item, end=" ")
             temp=temp.next
+
 
 sample=clist()
 sample.insert('apple')
