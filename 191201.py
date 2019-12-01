@@ -1,5 +1,6 @@
 N= int(input())
 map = [[False for j in range(N)] for i in range(N)]
+#map = [[False]*N]*N  이거 이렇게 하면 안돼!
 for i in range(N):
     map[i] = list(input())
 
