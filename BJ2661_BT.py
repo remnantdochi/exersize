@@ -1,26 +1,20 @@
 N = int(input())
-res = 3*(10**(N-1))
-def possible(numbers):
-    length = len(numbers)
-    i=1
-    while (length-2*i>=0):
-        if (numbers[length-i*2:length-i] == numbers[length-i:]) : return False
-        i= i*2
-    return True
 
 def BT(numbers):
-    global res
+    for i in range(1, len(numbers)//2+1):
+        if numbers[-i*2:-i] == numbers[-i:]: return False
+
     if len(numbers) == N:
-        #print("".join(numbers))
-        res = min(int("".join(numbers)), res)
-        return
+        ##일단 여기 도달하면 그게 최소임
+        for item in numbers : print(item, end = "")
+        return True
+
     for i in range(1,4):
-        numbers.append(str(i))
+        numbers.append(i)
         #print(numbers)
-        if possible(numbers):
-            BT(numbers)
+        if BT(numbers):
             numbers.pop()
-        else : numbers.pop()
+            return True
+        numbers.pop()
 
 BT([])
-print(res)
